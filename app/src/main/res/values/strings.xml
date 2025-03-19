@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">CvBuilder</string>
+    <string name="preview">Preview</string>
+    <string name="references">References</string>
+    <string name="certifications">Certifications</string>
+    <string name="experience">Experience</string>
+    <string name="education">Education</string>
+    <string name="summary">Summary</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="select_a_profile_picture">Select a profile picture</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="confirm">Confirm</string>
+    <string name="todo">TODO</string>
+    <string name="john_doe">John Doe</string>
+    <string name="john_doe_example_com">john.doe@example.com</string>
+    <string name="linkedin_linkedin_com_in_johndoe">LinkedIn: linkedin.com/in/johndoe</string>
 </resources>

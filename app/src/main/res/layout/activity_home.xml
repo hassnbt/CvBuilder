@@ -4,73 +4,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:id="@+id/main">
+    android:id="@+id/main"
+    android:background="@color/purple_500"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:gravity="center">
+        android:gravity="center"
+
+        >
 
         <Button
             android:id="@+id/btnProfilePicture"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Profile Picture" />
+            android:layout_height="70dp"
+            android:text="@string/profile_picture"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/btnPersonalDetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Personal Details"
+            android:layout_height="70dp"
+            android:text="@string/personal_details"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"/>
 
         <Button
             android:id="@+id/btnSummary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Summary"
+            android:layout_height="70dp"
+            android:text="@string/summary"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"/>
 
         <Button
             android:id="@+id/btnEducation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Education"
+            android:layout_height="70dp"
+            android:text="@string/education"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"/>
 
         <Button
             android:id="@+id/btnExperience"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Experience"
+            android:layout_height="70dp"
+            android:text="@string/experience"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"/>
 
         <Button
             android:id="@+id/btnCertifications"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Certifications"
+            android:layout_height="70dp"
+            android:text="@string/certifications"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"/>
 
         <Button
             android:id="@+id/btnReferences"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="References"
+            android:layout_height="70dp"
+            android:text="@string/references"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"/>
 
-        <!-- TextView to display returned data from second activity -->
-        <TextView
-            android:id="@+id/tvResult"
+        <!-- Newly Added Preview Button -->
+        <Button
+            android:id="@+id/btnPreview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Received Data will appear here"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="16dp"/>
+            android:layout_height="70dp"
+            android:text="@string/preview"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"/>
+
 
     </LinearLayout>
 </ScrollView>
