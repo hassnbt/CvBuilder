@@ -18,7 +18,7 @@
             android:gravity="top"
             android:hint="Enter your reference details (e.g., names, contacts)..."
             android:inputType="textMultiLine"
-            android:background="@android:color/white"
+            android:background="@drawable/rounded_button"
             android:padding="8dp"
             android:layout_margin="10dp"
             />
