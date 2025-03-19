@@ -29,7 +29,7 @@ public class home extends AppCompatActivity {
     private static final int REQUEST_CODE = 1; // Request code for returning data
     private TextView tvResult;
     public String personName, personEmail, personLinkedIn;
-    public String summaryText;
+    public String summaryText;    public String educationText;    public String experienceText; public String referencesText;
     Button btnProfilePicture,btnpreviewscreen;
     Button btnPersonalDetails;
     Button btnSummary;
@@ -41,11 +41,10 @@ public class home extends AppCompatActivity {
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Intent data = result.getData();
-                    // Check if the result is from ProfilePictureActivity (returns "dataKey").
+                    // Check for profile picture result.
                     if (data.hasExtra("dataKey") && data.getStringExtra("dataKey") != null &&
                             !data.getStringExtra("dataKey").isEmpty()) {
                         String returnedData = data.getStringExtra("dataKey");
-                        // Save the image from the returned URI into internal storage.
                         Uri selectedUri = Uri.parse(returnedData);
                         try {
                             InputStream inputStream = getContentResolver().openInputStream(selectedUri);
@@ -64,19 +63,30 @@ public class home extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    // Check if the result is from PersonalDetailsActivity.
+                    // Check for personal details result.
                     else if (data.hasExtra("name")) {
                         personName = data.getStringExtra("name");
                         personEmail = data.getStringExtra("email");
                         personLinkedIn = data.getStringExtra("linkedin");
                     }
-                    // Check if the result is from SummaryActivity.
+                    // Check for summary result.
                     else if (data.hasExtra("summary")) {
                         summaryText = data.getStringExtra("summary");
                     }
+                    // Check for education result.
+                    else if (data.hasExtra("education")) {
+                        educationText = data.getStringExtra("education");
+                    }
+                    // Check for experience result.
+                    else if (data.hasExtra("experience")) {
+                        experienceText = data.getStringExtra("experience");
+                    }
+                    // Check for references result.
+                    else if (data.hasExtra("references")) {
+                        referencesText = data.getStringExtra("references");
+                    }
                 }
             });
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +126,15 @@ init();
             }
             if (summaryText != null) {
                 intent.putExtra("summary", summaryText);
+            }
+            if (educationText != null) {
+                intent.putExtra("education", educationText);
+            }
+            if (experienceText != null) {
+                intent.putExtra("experience", experienceText);
+            }
+            if (referencesText != null) {
+                intent.putExtra("references", referencesText);
             }
             startActivity(intent);
         });

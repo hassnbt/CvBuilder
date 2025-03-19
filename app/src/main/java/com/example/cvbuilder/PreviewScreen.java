@@ -19,7 +19,7 @@ import java.io.InputStream;
 
 public class PreviewScreen extends AppCompatActivity {
     private ImageView ivPreviewProfile;
-    private TextView tvName, tvEmail, tvLinkedIn,tvSummary;;
+    private TextView tvName, tvEmail, tvLinkedIn,tvSummary, tvEducation,tvExperience,tvReferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,18 +70,36 @@ init();
         } else {
             tvSummary.setText("No summary provided.");
         }
+        String education = intent.getStringExtra("education");
+        if (education != null && !education.isEmpty()) {
+            tvEducation.setText(education);
+        } else {
+            tvEducation.setText("No education details provided.");
+        }
+        String experience = intent.getStringExtra("experience");
+        if (experience != null && !experience.isEmpty()) {
+            tvExperience.setText(experience);
+        } else {
+            tvExperience.setText("No experience details provided.");
+        }
+        String references = intent.getStringExtra("references");
+        if (references != null && !references.isEmpty()) {
+            tvReferences.setText(references);
+        } else {
+            tvReferences.setText("No reference details provided.");
+        }
     }
     private void init(){
 
 
-
+        tvReferences = findViewById(R.id.tvReferences);
         tvSummary = findViewById(R.id.tvSummary);
         ivPreviewProfile = findViewById(R.id.ivPreviewProfile1);
         tvName = findViewById(R.id.tvName);
         tvEmail = findViewById(R.id.tvEmail);
         tvLinkedIn = findViewById(R.id.tvLinkedIn);
-
-
+        tvEducation = findViewById(R.id.tvEducation);
+        tvExperience = findViewById(R.id.tvExperience);
 //        tvName.setText("John Doe");
 //        tvEmail.setText("john.doe@example.com");
 //        tvLinkedIn.setText("LinkedIn: linkedin.com/in/johndoe");

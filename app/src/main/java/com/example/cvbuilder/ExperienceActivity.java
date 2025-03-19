@@ -1,6 +1,9 @@
 package com.example.cvbuilder;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ExperienceActivity extends AppCompatActivity {
-
+    private EditText etExperience;
+    private Button btnSubmit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +23,17 @@ public class ExperienceActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        etExperience = findViewById(R.id.etExperience);
+        btnSubmit = findViewById(R.id.btnSubmit);
+
+        btnSubmit.setOnClickListener(view -> {
+            String experienceText = etExperience.getText().toString().trim();
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("experience", experienceText);
+            setResult(RESULT_OK, resultIntent);
+            finish();
         });
     }
 }

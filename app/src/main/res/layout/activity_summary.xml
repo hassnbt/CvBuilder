@@ -20,6 +20,8 @@
             android:inputType="textMultiLine"
             android:background="@drawable/rounded_button"
             android:padding="8dp"
+            android:layout_margin="10dp"
+
             />
 
         <Button
@@ -27,6 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="32dp"
+            android:layout_margin="10dp"
+            />
     </LinearLayout>
 </ScrollView>
