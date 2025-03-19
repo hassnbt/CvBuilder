@@ -28,6 +28,8 @@ public class home extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1; // Request code for returning data
     private TextView tvResult;
+    public String personName, personEmail, personLinkedIn;
+    public String summaryText;
     Button btnProfilePicture,btnpreviewscreen;
     Button btnPersonalDetails;
     Button btnSummary;
@@ -38,33 +40,43 @@ public class home extends AppCompatActivity {
     private final ActivityResultLauncher<Intent> activityResultLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    String returnedData = result.getData().getStringExtra("dataKey");
-                    if (returnedData != null && !returnedData.isEmpty()) {
-                        // Get the URI returned by ProfilePictureActivity.
+                    Intent data = result.getData();
+                    // Check if the result is from ProfilePictureActivity (returns "dataKey").
+                    if (data.hasExtra("dataKey") && data.getStringExtra("dataKey") != null &&
+                            !data.getStringExtra("dataKey").isEmpty()) {
+                        String returnedData = data.getStringExtra("dataKey");
+                        // Save the image from the returned URI into internal storage.
                         Uri selectedUri = Uri.parse(returnedData);
-                        // Load the image and save it to internal storage.
                         try {
                             InputStream inputStream = getContentResolver().openInputStream(selectedUri);
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                             if (inputStream != null) {
                                 inputStream.close();
                             }
-                            // Define a filename and create a file in internal storage.
                             String fileName = "profile_picture.png";
                             File file = new File(getFilesDir(), fileName);
                             FileOutputStream fos = new FileOutputStream(file);
-                            // Save the bitmap as a PNG.
                             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
                             fos.flush();
                             fos.close();
-                            // Update profilePictureUri with the file URI.
                             profilePictureUri = Uri.fromFile(file);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
+                    // Check if the result is from PersonalDetailsActivity.
+                    else if (data.hasExtra("name")) {
+                        personName = data.getStringExtra("name");
+                        personEmail = data.getStringExtra("email");
+                        personLinkedIn = data.getStringExtra("linkedin");
+                    }
+                    // Check if the result is from SummaryActivity.
+                    else if (data.hasExtra("summary")) {
+                        summaryText = data.getStringExtra("summary");
+                    }
                 }
             });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,11 +102,20 @@ init();
 
         btnpreviewscreen.setOnClickListener(view -> {
             Intent intent = new Intent(home.this, PreviewScreen.class);
-            // Pass the file URI as a string if available; otherwise, pass an empty string.
+            // Pass the saved profile picture file URI.
             if (profilePictureUri != null) {
                 intent.putExtra("dataKey", profilePictureUri.toString());
             } else {
                 intent.putExtra("dataKey", "");
+            }
+            // Pass personal details if available.
+            if (personName != null) {
+                intent.putExtra("name", personName);
+                intent.putExtra("email", personEmail);
+                intent.putExtra("linkedin", personLinkedIn);
+            }
+            if (summaryText != null) {
+                intent.putExtra("summary", summaryText);
             }
             startActivity(intent);
         });

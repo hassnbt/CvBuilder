@@ -19,7 +19,7 @@ import java.io.InputStream;
 
 public class PreviewScreen extends AppCompatActivity {
     private ImageView ivPreviewProfile;
-    private TextView tvName, tvEmail, tvLinkedIn;
+    private TextView tvName, tvEmail, tvLinkedIn,tvSummary;;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,21 +46,36 @@ init();
                 ivPreviewProfile.setImageBitmap(bitmap);
             } catch (Exception e) {
                 e.printStackTrace();
-     
+
             }
         }
 
 
-        tvName.setText("John Doe");
-        tvEmail.setText("john.doe@example.com");
-        tvLinkedIn.setText("LinkedIn: linkedin.com/in/johndoe");
+        String name = intent.getStringExtra("name");
+        String email = intent.getStringExtra("email");
+        String linkedin = intent.getStringExtra("linkedin");
 
+        if (name != null) {
+            tvName.setText(name);
+        }
+        if (email != null) {
+            tvEmail.setText(email);
+        }
+        if (linkedin != null) {
+            tvLinkedIn.setText(linkedin);
+        }
+        String summary = intent.getStringExtra("summary");
+        if (summary != null && !summary.isEmpty()) {
+            tvSummary.setText(summary);
+        } else {
+            tvSummary.setText("No summary provided.");
+        }
     }
     private void init(){
 
 
 
-
+        tvSummary = findViewById(R.id.tvSummary);
         ivPreviewProfile = findViewById(R.id.ivPreviewProfile1);
         tvName = findViewById(R.id.tvName);
         tvEmail = findViewById(R.id.tvEmail);
